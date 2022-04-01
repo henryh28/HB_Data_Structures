@@ -1,5 +1,6 @@
 """Functions to parse a file containing villager data."""
 
+# Authors: Luna Lam & Henry Hsu
 
 input_file = open("villagers.csv")
 
