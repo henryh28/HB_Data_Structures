@@ -1,6 +1,20 @@
 """Functions to parse a file containing villager data."""
 
 
+input_file = open("villagers.csv")
+
+
+def villagers_info(filename):
+    filename.seek(0)
+
+    all_villagers = []
+
+    for line in filename:
+        villager = line.split("|")
+        all_villagers.append(villager)
+
+    return all_villagers
+
 def all_species(filename):
     """Return a set of unique species in the given file.
 
@@ -12,8 +26,10 @@ def all_species(filename):
     """
 
     species = set()
+    all_villagers = villagers_info(filename)
 
-    # TODO: replace this with your code
+    for villager in all_villagers:
+        species.add(villager[1])
 
     return species
 
@@ -28,10 +44,14 @@ def get_villagers_by_species(filename, search_string="All"):
     Return:
         - list[str]: a list of names
     """
-
     villagers = []
+    all_villagers = villagers_info(filename)
 
-    # TODO: replace this with your code
+    for villager in all_villagers:
+        if search_string == "All":
+            villagers.append(villager[0])
+        elif villager[1] == search_string:
+            villagers.append(villager[0]) 
 
     return sorted(villagers)
 
@@ -104,3 +124,18 @@ def find_likeminded_villagers(filename, villager_name):
     """
 
     # TODO: replace this with your code
+
+print (all_species(input_file))
+print ("==================================")
+print (get_villagers_by_species(input_file, "Anteater"))
+print ("==================================")
+print (get_villagers_by_species(input_file))
+
+
+input_file.close()
+
+# call rest of fucntion
+
+
+
+
